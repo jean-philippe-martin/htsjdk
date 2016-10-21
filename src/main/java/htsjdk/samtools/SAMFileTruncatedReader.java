@@ -20,10 +20,12 @@ public class SAMFileTruncatedReader extends SAMFileReader {
             this.max = max;
         }
 
+        @Override
         public boolean hasNext() {
             return i.hasNext() && max != currentRecord;
         }
 
+        @Override
         public SAMRecord next() {
             if (this.hasNext()) {
                 currentRecord += 1;
@@ -33,14 +35,17 @@ public class SAMFileTruncatedReader extends SAMFileReader {
             }
         }
 
+        @Override
         public void remove() {
             i.remove();
         }
 
+        @Override
         public void close() {
             i.close();
         }
 
+        @Override
         public SAMRecordIterator assertSorted(final SAMFileHeader.SortOrder sortOrder) {
             return i.assertSorted(sortOrder);
         }
